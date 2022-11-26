@@ -5,9 +5,8 @@ from sudoku_base import read_sudoku, var, visualize
 import sys
 from sys import exit
 
-rows = ['0','1','2','3','4','5','6','7','8']
-columns = ['0','1','2','3','4','5','6','7','8']
-values = ['0','1','2','3','4','5','6','7','8']
+    
+
 
 
 def alo(lits):
@@ -46,6 +45,17 @@ def solve(path):
     #      print(cnf.decode_dimacs(clause))
 
     # print('---------')
+    
+    #values: Generate the amount of values needed in function of the size
+    
+    lst = []
+    val = 0
+    while(val<SUBGROUP_LENGTH*SUBGROUP_HEIGHT):
+        lst.append(val)
+        val += 1
+    rows = lst.copy()
+    columns = lst.copy()
+    values = lst.copy()
     
     # Cells: Create a set of clauses with each possible value
     
@@ -100,21 +110,19 @@ def solve(path):
    
     # Subgroup
     #Functionality: This functions generates amo functions for each subgroup.
-    #It uses the variables i and j to define wich one of the 9 subgroups clauses are being generated.
+    #It uses the variables i and j to define wich one of the subgroups clauses are being generated.
     
-    for i in range(1,4):
+    for i in range(SUBGROUP_LENGTH):
     
-        for j in range(1,4):
+        for j in range(SUBGROUP_HEIGHT):
         
             for value in values:
                 lits = []
                 for row in rows:
-                
-                    if int(row) >= (3*i)-3 and int(row) < 3*i:
-                    
+              
+                    if int(row) >= (SUBGROUP_HEIGHT*i)-SUBGROUP_HEIGHT and int(row) < SUBGROUP_HEIGHT*i:            
                         for column in columns:
-                        
-                            if int(column) >= (3*j)-3 and int(column) < 3*j:
+                            if int(column) >= (SUBGROUP_LENGTH*j)-SUBGROUP_LENGTH and int(column) < SUBGROUP_LENGTH*j:
                             
                                 lit = Bool('Cell_{}_{}_{}'.format(row,column,value))
                                 lits.append(lit)
