@@ -3,6 +3,7 @@
 This is a repository for all the programs proposed in Logical Computation Class.
 ## Credits
 Optilog Developer: The investigation team of [UDL](https://www.eps.udl.cat/ca/) directed by [Carlos Ansótegui](https://scholar.google.es/citations?user=Pisfb3EAAAAJ&hl=en)
+
 Developer of sudoku.py: Student: Èric Bitriá Ribes
 ## Objectives
 The main objective is having an archive of all the progress during the developtment of the programs.
