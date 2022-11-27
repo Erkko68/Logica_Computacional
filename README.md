@@ -13,6 +13,6 @@ The objective of this project is creating a Sudoku solver based on the computati
 
 ### Tools
 
-This project also includes tools, such as tests and the already compiled sudoku.bin, these tools are only used for testing and are not included in the final project.
+This project also includes tools, such as tests and test.sh wich automaticlly tests all the samples, these tools are only used for testing and are not included in the final project.
 
 
