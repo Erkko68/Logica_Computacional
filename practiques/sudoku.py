@@ -115,7 +115,6 @@ def solve(path):
     # Subgroup
     #Functionality: This function generates amo functions for each subgroup.
     #It uses the variables i and j to define wich one of the subgroups clauses are being generated.
-    #This part of the code is completly useles when is being used with the king movement, because this code is a subset of the king's one
     
     for i in range(SUBGROUP_LENGTH):
     
@@ -138,13 +137,15 @@ def solve(path):
     # Miracle Sudoku
     
     # Cells reachable with a knight move can not contain same value
-    # - YOUR CODE HERE -
+    #this code generates a set of clauses depending on each individual cell and creates a set of clauses to prevent the repetition of the origin cell value on the designed positions.
     
     for value in values:
         lits = []
         for row in rows:
             for column in columns:
-
+            
+            #Origin cell
+            
                 lit = Bool('Cell_{}_{}_{}'.format(row,column,value))
                 lits.append(lit)
             
@@ -196,20 +197,20 @@ def solve(path):
                     lit = Bool('Cell_{}_{}_{}'.format(row+2,column+1,value))
                     lits.append(lit)
                     
-                
+            #create clauses and reset list
+            
                 cnf.add_clauses(selfish_amo(lits))
                 lits = []  
      
-        
-    
-    
     # Cells reachable with a king move can not contain same value
-    # - YOUR CODE HERE -
+    #
     
     for value in values:
         lits = []
         for row in rows:
             for column in columns:
+                
+                #generate origin cell
                 
                 lit = Bool('Cell_{}_{}_{}'.format(row,column,value))
                 lits.append(lit)
@@ -259,16 +260,19 @@ def solve(path):
                   
                     lit = Bool('Cell_{}_{}_{}'.format(row+1,column+1,value))
                     lits.append(lit)
+                    
+                #create clauses and reset list
                 
                 cnf.add_clauses(selfish_amo(lits))
                 lits = []  
     
     # Cells reachable with a king move (without diagonal one) can not contain a consecutive value
-    # - YOUR CODE HERE -
     
     for value in values:
         for row in rows:
             for column in columns:
+            
+            	#generate origin cell
                 
                 lit = Bool('Cell_{}_{}_{}'.format(row,column,value))
                 lits.append(lit)
@@ -320,6 +324,8 @@ def solve(path):
                                      
                     lit = Bool('Cell_{}_{}_{}'.format(row,column+1,value-1))
                     lits.append(lit)
+                
+                #create clauses and reset list
                 
                 cnf.add_clauses(selfish_amo(lits))
                 lits = [] 
